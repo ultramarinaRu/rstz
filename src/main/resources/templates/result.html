@@ -1,0 +1,41 @@
+<!DOCTYPE HTML>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+    <title>Кредитный калькулятор</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+</head>
+<body>
+<h3>Параметры</h3>
+<p th:text="'Сумма: ' + ${params.sum}"/>
+<p th:text="'Месяцев: ' + ${params.months}"/>
+<p th:text="'Процент: ' + ${params.percent}"/>
+<h3 th:text="${error}"/>
+<a href="/mortgage">Новый расчет</a>
+<p/>
+<h3>Аннуитетный график</h3>
+<table border>
+    <thead>
+    <tr>
+        <th>Номер платежа</th>
+        <th>Месяц/Год</th>
+        <th>Платеж по основному долгу</th>
+        <th>Платеж по процентам</th>
+        <th>Остаток основного долга</th>
+        <th>Общая сумма платежа</th>
+    </tr>
+    </thead>
+    <tbody>
+
+    <tr th:each="payments : ${list}">
+        <td th:text="${payments.num}"></td>
+        <td th:text="${payments.date}"></td>
+        <td th:text="${payments.mainPayment}"></td>
+        <td th:text="${payments.percentPayment}"></td>
+        <td th:text="${payments.mainLeft}"></td>
+        <td th:text="${payments.allPayment}"></td>
+    </tr>
+
+    </tbody>
+</table>
+</body>
+</html>
